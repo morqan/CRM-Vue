@@ -30,7 +30,7 @@
         >Password cant be empty</small>
         <small class="helper-text invalid"
                v-else-if="$v.password.$dirty && !$v.password.minLength"
-        >Password must be min {{$v.password.$params.minLength.min}} character</small>
+        >Password must be {{$v.password.$params.minLength.min}} character</small>
       </div>
     </div>
     <div class="card-action">
@@ -52,6 +52,7 @@
 </template>
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import messages from '../utils/messages'
 export default {
   name: 'login',
   data: () => ({
@@ -60,7 +61,12 @@ export default {
   }),
   validations: {
     email: { email, required },
-    password: { minLength: minLength(), required }
+    password: { minLength: minLength(6), required }
+  },
+  mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
   },
   methods: {
     submitHandler () {
@@ -68,6 +74,11 @@ export default {
         this.$v.$touch()
         return
       }
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+      console.log(formData)
       this.$router.push('/')
     }
   }
