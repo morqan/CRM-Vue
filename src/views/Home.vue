@@ -22,7 +22,7 @@
       </div>
 
       <div class="col s12 m6 l8">
-        <div class="card orange darken-3 bill-card">
+        <div class="card blue darken-1 bill-card">
           <div class="card-content white-text">
             <div class="card-header">
               <span class="card-title">Курс валют</span>

@@ -11,7 +11,6 @@ export default {
         })
       } catch (e) {
         commit('setError', e)
-        console.log(e)
         throw e
       }
     },
